@@ -17,7 +17,6 @@ export default {
     ])
 
     const beforeEnter = (el) => {
-      debugger;
       el.style.opacity = '0';
       el.style.transform = 'translateY(-30px)';
     };

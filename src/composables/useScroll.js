@@ -23,5 +23,5 @@ export default function useScroll() {
   return {
     scrolled,
     scroll
-  }
+  };
 }
