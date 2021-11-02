@@ -38,7 +38,6 @@ body {
   font-family: 'Spectral';
   overflow-x: hidden;
   // overflow-y: scroll;
-  content-visibility: auto;
 }
 
 .app {

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import throttle from 'lodash/throttle';
 import HeaderMenu from '@/components/HeaderMenu.vue';
 
 export default {
@@ -19,13 +20,13 @@ export default {
     };
   },
   methods: {
-    scroll() {
+    scroll: throttle( function() {
       if (window.scrollY > 0) {
         this.scrolled = true;
       } else {
         this.scrolled = false;
       }
-    }
+    }, 100)
   },
   mounted() {
     window.addEventListener('scroll', this.scroll);
@@ -39,6 +40,7 @@ export default {
 <style lang="scss">
 .header {
   position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
