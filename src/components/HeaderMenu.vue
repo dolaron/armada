@@ -18,19 +18,34 @@
 </template>
 
 <script>
-import {ref, computed, watch} from 'vue';
+import throttle from 'lodash/throttle';
+import {ref, computed, watch, onMounted, onUnmounted} from 'vue';
 import {useRoute} from 'vue-router';
 
 export default {
   name: 'HeaderMenu',
   setup() {
     let isVisible = ref(false);
-    function showMenu() {
+
+    watch(isVisible, (value) => {
+      const app = document.getElementById('content');
+      const appTitle = document.getElementById('title');
+      if (value) {
+        app.style.transform = 'translate(-244px, 0)';
+        appTitle.style.transform = 'translate(-244px, 0)';
+      } else {
+        app.style.transform = 'translate(0, 0)';
+        appTitle.style.transform = 'translate(0, 0)';
+      }
+    });
+
+    const showMenu = () => {
       isVisible.value = !isVisible.value;
     }
-    function hideMenu() {
+
+    const hideMenu = () => {
       isVisible.value = false;
-    }
+    };
 
     const menuItems = ref({
       me: [
@@ -43,47 +58,37 @@ export default {
         {id: 'collections', name: 'collections', group: 'SHOP', path: '/collections'}
       ]
     });
+
     const currentRoute = computed(() => useRoute().name);
 
-    watch(isVisible, (value) => {
-      const app = document.getElementById('content');
-      const appTitle = document.getElementById('title');
-      if (value) {
-        app.style.transform = 'translate(-244px, 0)';
-        appTitle.style.transform = 'translate(-244px, 0)';
+    const scrolled = ref(false);
+
+    const scroll = throttle(() => {
+      if (window.scrollY > 0) {
+        scrolled.value = true;
       } else {
-        app.style.transform = 'translate(0, 0)';
-        appTitle.style.transform = 'translate(0, 0)';
+        scrolled.value = false;
       }
-    })
+    }, 100);
+
+    onMounted(() => {
+      window.addEventListener('scroll', scroll);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('scroll', scroll);
+    });
 
     return {
       isVisible,
       showMenu,
       hideMenu,
       menuItems,
-      currentRoute
+      currentRoute,
+
+      scrolled,
+      scroll
     }
-  },
-    data() {
-    return {
-      scrolled: false
-    };
-  },
-  methods: {
-    scroll() {
-      if (window.scrollY > 0) {
-        this.scrolled = true;
-      } else {
-        this.scrolled = false;
-      }
-    }
-  },
-  mounted() {
-    window.addEventListener('scroll', this.scroll);
-  },
-  unmounted() {
-    window.removeEventListener('scroll', this.scroll);
   }
 }
 </script>

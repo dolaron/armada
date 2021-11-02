@@ -7,32 +7,37 @@
 
 <script>
 import throttle from 'lodash/throttle';
+import {ref, onMounted, onUnmounted} from 'vue';
 import HeaderMenu from '@/components/HeaderMenu.vue';
 
 export default {
   name: 'Header',
+  setup() {
+    const scrolled = ref(false);
+
+    const scroll = throttle(() => {
+      if (window.scrollY > 0) {
+        scrolled.value = true;
+      } else {
+        scrolled.value = false;
+      }
+    }, 100);
+
+    onMounted(() => {
+      window.addEventListener('scroll', scroll);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('scroll', scroll);
+    });
+
+    return {
+      scrolled,
+      scroll
+    }
+  },
   components: {
     HeaderMenu
-  },
-  data() {
-    return {
-      scrolled: false
-    };
-  },
-  methods: {
-    scroll: throttle( function() {
-      if (window.scrollY > 0) {
-        this.scrolled = true;
-      } else {
-        this.scrolled = false;
-      }
-    }, 100)
-  },
-  mounted() {
-    window.addEventListener('scroll', this.scroll);
-  },
-  unmounted() {
-    window.removeEventListener('scroll', this.scroll);
   }
 }
 </script>
