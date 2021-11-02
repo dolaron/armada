@@ -18,13 +18,15 @@
 </template>
 
 <script>
-import throttle from 'lodash/throttle';
-import {ref, computed, watch, onMounted, onUnmounted} from 'vue';
+import useScroll from '@/composables/useScroll';
+import {ref, computed, watch} from 'vue';
 import {useRoute} from 'vue-router';
 
 export default {
   name: 'HeaderMenu',
   setup() {
+    const {scrolled, scroll} = useScroll();
+
     let isVisible = ref(false);
 
     watch(isVisible, (value) => {
@@ -61,33 +63,15 @@ export default {
 
     const currentRoute = computed(() => useRoute().name);
 
-    const scrolled = ref(false);
-
-    const scroll = throttle(() => {
-      if (window.scrollY > 0) {
-        scrolled.value = true;
-      } else {
-        scrolled.value = false;
-      }
-    }, 100);
-
-    onMounted(() => {
-      window.addEventListener('scroll', scroll);
-    });
-
-    onUnmounted(() => {
-      window.removeEventListener('scroll', scroll);
-    });
-
     return {
+      scrolled,
+      scroll,
+
       isVisible,
       showMenu,
       hideMenu,
       menuItems,
-      currentRoute,
-
-      scrolled,
-      scroll
+      currentRoute
     }
   }
 }
