@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
  @keyframes wave-lines {
     0% {
         background-position: -468px 0;

@@ -42,8 +42,10 @@ export default {
 <style lang="scss">
 .collections {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   flex: 1;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 </style>

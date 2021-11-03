@@ -53,10 +53,8 @@ export default {
 <style lang="scss">
 .clothes {
   display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  flex: 1;
 }
 </style>
