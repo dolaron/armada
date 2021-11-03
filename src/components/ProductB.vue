@@ -49,11 +49,12 @@ export default {
   //  max-width: 300px;
   //  width: 100%;
   background: #fff;
-  margin: 10px 25px 50px 10px;
+  margin: 30px 50px;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
+  flex-wrap: wrap;
 
   &__side {
     display: flex;
@@ -65,7 +66,11 @@ export default {
 
   &__side-b {
     align-items: flex-start !important;
-    margin: 25px 75px 25px 25px !important;
+    margin: 25px 50px !important;
+
+    @media (min-width: 660px) {
+      margin: 25px 55px 25px 25px !important;
+    }
   }
 
   .square {
@@ -108,27 +113,37 @@ export default {
      &__desc {
        align-self: flex-start;
        height: 20px;
-       width: 140px;
+       width: 150px;
+
+       @media (min-width: 660px) {}
      }
 
      &__desc2 {
        height: 10px;
-       width: 200px;
+       width: 220px;
+
+       @media (min-width: 660px) {}
      }
       
       &__desc3 {
        height: 13px;
-       width: 168px;
+       width: 178px;
+
+       @media (min-width: 660px) {}
      }
 
       &__desc4 {
        height: 15px;
-       width: 150px;
+       width: 160px;
+
+       @media (min-width: 660px) {}
      }
 
       &__desc5 {
        height: 14px;
-       width: 178px;
+       width: 188px;
+
+       @media (min-width: 660px) {}
      }
   }
 }

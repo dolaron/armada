@@ -41,7 +41,7 @@ export default {
   //  max-width: 300px;
   //  width: 100%;
   background: #fff;
-  margin: 10px 25px 50px 10px;
+  margin: 25px;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
