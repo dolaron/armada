@@ -1,8 +1,8 @@
 <template>
   <div class="app">
-    <app-header />
+    <AppHeader />
     <div id="content" class="content">
-      <app-nav />
+      <AppNav />
       <router-view v-slot="{Component}">
         <transition name="route" mode="out-in">
           <component id="component" :is="Component"></component>

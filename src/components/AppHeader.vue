@@ -1,7 +1,7 @@
 <template>
   <div class="header" :class="{'header--scrolled': scrolled}">
     <div id="title" class="header__title" :class="{'header__title--scrolled': scrolled}">Tomasz Armada</div>
-    <header-menu/>
+    <HeaderMenu/>
   </div>
 </template>
 
@@ -31,12 +31,19 @@ export default {
   top: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding-left: 25px;
+  justify-content: flex-start;
+  
   flex: 1;
   width: 100%;
   z-index: 100;
   background: white;
   transition: box-shadow 0.2s ease;
+
+  @media (min-width: 700px) {
+    padding: 0;
+    justify-content: center;
+  }
 
   &--scrolled {
     box-shadow: 0 0 10px #eee;

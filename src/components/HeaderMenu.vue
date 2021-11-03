@@ -27,7 +27,7 @@ export default {
   setup() {
     const {scrolled, scroll} = useScroll();
 
-    let isVisible = ref(false);
+    const isVisible = ref(false);
 
     watch(isVisible, (value) => {
       const app = document.getElementById('content');
@@ -98,10 +98,14 @@ export default {
   position: relative;
   display: flex;
   flex: 0.7;
-  justify-content: space-between;
+  justify-content: center;
   font-family: '';
   margin-top: 4px;
   transition: margin 0.2s ease;
+
+  @media (min-width: 700px) {
+    justify-content: space-between;
+  }
 
   &--scrolled {
     margin-top: -4px;
@@ -109,7 +113,12 @@ export default {
   
   &__wrapper {
     position: absolute;
-    width: 200px;
+    width: 150px;
+    transition: width 0.5s ease;
+
+    @media (min-width: 700px) {
+      width: 200px;
+    }
     top: 23px;
     right: 0;
 
@@ -129,12 +138,17 @@ export default {
   }
 
   &__lang {
-    display: flex;
+    // display: flex;
+    display: none;
     flex: 0.3;
     align-items: center;
     justify-content: center;
     margin-right: 65px;
     z-index: 160;
+
+    @media (min-width: 700px) {
+      display: flex;
+    }
   }
 
   &__header {
