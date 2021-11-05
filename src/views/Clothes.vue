@@ -13,7 +13,7 @@ export default {
   name: 'Clothes',
   setup() {
     const items = ref([
-      {}, {}, {}, {}, {}, {}, {}
+      {}, {}, {}, {}, {}, {}, {}, {}
     ])
 
     const beforeEnter = (el) => {

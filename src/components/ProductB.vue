@@ -1,6 +1,6 @@
 <template>
   <div class="skeleton">
-    <div class="skeleton__side">
+    <div class="skeleton__side" :style="flexOrder">
       <div class="square"></div>
       <div class="line line__title"></div>
     </div>
@@ -15,9 +15,27 @@
 </template>
 
 <script>
+import {computed} from 'vue';
 
 export default {
   name: 'ProductB',
+    props: {
+      second: {
+        type: Boolean,
+        default: false
+      }
+  },
+  setup(props) {
+    const flexOrder = computed(() => {
+      return {
+        '--order': props.second ? '2' : '0'
+      }
+    });
+    
+    return {
+      flexOrder
+    };
+  }
 }
 </script>
 
@@ -62,14 +80,20 @@ export default {
     align-items: center;
     justify-content: center;
     margin: 25px 50px;
+
+    @media (min-width: 660px) {
+      order: var(--order);
+    }
   }
 
   &__side-b {
+    order: 1;
     align-items: flex-start !important;
     margin: 25px 50px !important;
 
     @media (min-width: 660px) {
       margin: 25px 55px 25px 25px !important;
+      order: var(--order);
     }
   }
 
@@ -115,7 +139,9 @@ export default {
        height: 20px;
        width: 150px;
 
-       @media (min-width: 660px) {}
+       @media (min-width: 660px) {
+         width: 50%;
+       }
      }
 
      &__desc2 {

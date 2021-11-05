@@ -1,6 +1,6 @@
 <template>
     <transition-group tag="div" class="collections" @beforeEnter="beforeEnter" @leave="leave" @enter="enter" appear>
-    <ProductB v-for="(item, index) in items" :key="`el+${index}`" :data-index="index"/>
+    <ProductB v-for="(item, index) in items" :key="`el+${index}`" :data-index="index" :second="index % 2 === 0"/>
   </transition-group>
 </template>
 
